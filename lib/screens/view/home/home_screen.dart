@@ -62,6 +62,8 @@ class HomeScreen extends StatelessWidget {
                   //       )),
                   //   builder: (context) => Center(child: CircularProgressIndicator()),
                   // ),
+                  cubit.trendingMovieModel==null?
+                  CircularProgressIndicator(color: Colors.blue,):
                   SizedBox(
                     height: 240.h,
                     child: ListView.separated(

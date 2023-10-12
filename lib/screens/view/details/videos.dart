@@ -38,8 +38,8 @@ class VideosScreen extends StatelessWidget {
                       itemCount: cubit.videoModel?.results?.length,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          mainAxisSpacing: 3,
-                          childAspectRatio: 0.63,
+                          mainAxisSpacing: 25,
+                          childAspectRatio:0.65,
                           crossAxisSpacing: 7),
                       itemBuilder: (context, current) =>
                           InkWell(
@@ -48,9 +48,14 @@ class VideosScreen extends StatelessWidget {
 
                             },
                             child: Column(
+
                               children: [
-                                Text('${cubit.videoModel?.results?[current].name}',
-                                    style: TextStyle(color: Colors.blueGrey[200],fontSize: 14.sp),),
+
+                                SizedBox(
+                                  child: Text('${cubit.videoModel?.results?[current].name}',
+                                      style: TextStyle(color: Colors.blueGrey[200],fontSize: 14.sp),
+                                  maxLines: 2,overflow: TextOverflow.ellipsis,),
+                                ),
                                 SizedBox(height: 10.h,),
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(16.r),
@@ -60,10 +65,11 @@ class VideosScreen extends StatelessWidget {
                                     width:95.w,
                                   ),
                                 ),
+                                SizedBox(height: 8.h,),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.blueGrey,
-                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(8),
 
                                   ),
                                   child: TextButton(onPressed: ()

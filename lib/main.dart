@@ -17,7 +17,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.init();
   Bloc.observer = MyBlocObserver();
-  var isDark = await SecureStorage().storage.read(key: 'darkMode');
 
   runApp(MyApp());
 }
@@ -52,7 +51,7 @@ class MyApp extends StatelessWidget {
                   debugShowCheckedModeBanner: false,
                   theme: ThemeData(
                     primarySwatch: Colors.blueGrey,
-                    scaffoldBackgroundColor: Colors.white70,
+                    scaffoldBackgroundColor: Colors.grey[400],
                     appBarTheme: AppBarTheme(
                       backgroundColor: Colors.blueGrey,
                       elevation: 0.0,

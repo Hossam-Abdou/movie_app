@@ -4,10 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:socer_project/screens/view/details/videos.dart';
 import 'package:socer_project/screens/view_model/system_cubit.dart';
-import 'package:socer_project/utils/colors/custom_colors.dart';
 import 'package:socer_project/utils/end_points/urls.dart';
 import 'package:socer_project/utils/widget/navigate.dart';
-
 import 'component/cast_screen.dart';
 import 'component/details_tab.dart';
 import 'component/reviews_screen.dart';
@@ -20,9 +18,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SystemCubit, SystemState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit=SystemCubit.get(context);
         return Scaffold(
