@@ -12,7 +12,6 @@ class VideosScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<SystemCubit, SystemState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -24,57 +23,50 @@ class VideosScreen extends StatelessWidget {
             child: SafeArea(
               child: Column(
                 children: [
-
                   Expanded(
-                    child: GridView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: cubit.videoModel?.results?.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 25,
-                          childAspectRatio:1,
-                          crossAxisSpacing: 7),
-                      itemBuilder: (context, current)
-                        {
-                          final YoutubePlayerController controller = YoutubePlayerController(
-                            initialVideoId: '${cubit.videoModel?.results?[current].key}',
-                            flags: const YoutubePlayerFlags(
-                              autoPlay: false,
-                              mute: false,
-                              loop: false,
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) => SizedBox(height: 10.h,),
+                        itemCount: cubit.videoModel?.results?.length??0,
+                          itemBuilder: (context, current) {
+                            final YoutubePlayerController controller = YoutubePlayerController(
+                              initialVideoId: '${cubit.videoModel?.results?[current].key}',
+                              flags: const YoutubePlayerFlags(
+                                autoPlay: false,
+                                mute: false,
+                                loop: false,
+                                showLiveFullscreenButton: false,
 
-                            ),
-                          );
-                          return  Column(
+                              ),
+                            );
+                            return  Column(
 
-                            children: [
-                              InkWell(
-                                onTap: ()
-                                {
-                                  controller.play();
-                                },
-                                child: SizedBox(
-                                  height:130.h,
-                                  child: YoutubePlayer(
-                                    controller: controller,
-                                    liveUIColor: Colors.blueGrey,
+                              children: [
+                                InkWell(
+                                  onTap: ()
+                                  {
+                                    controller.play();
+                                  },
+                                  child: SizedBox(
+                                    height:130.h,
+                                    child: YoutubePlayer(
+                                      controller: controller,
+                                      liveUIColor: Colors.blueGrey,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                child: Text('${cubit.videoModel?.results?[current].name}',
-                                  style: TextStyle(color: Colors.blueGrey[200],fontSize: 14.sp),
-                                  maxLines: 2,overflow: TextOverflow.ellipsis,),
-                              ),
+                                SizedBox(height: 10.h,),
+                                SizedBox(
+                                  child: Text('${cubit.videoModel?.results?[current].name}',
+                                    style: TextStyle(color: Colors.blueGrey[200],fontSize: 14.sp,fontWeight: FontWeight.bold),
+                                    maxLines: 2,overflow: TextOverflow.ellipsis),
+                                ),
 
-                            ],
-                          );
-                        }
+                              ],
+                            );
+                          } ,
 
-                    ),
-                  ),
+                      ),),
                 ],
               ),
             ),

@@ -25,7 +25,7 @@ class PopularScreen extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 15,
-              childAspectRatio: 0.63,
+              childAspectRatio: 0.62,
               crossAxisSpacing: 15),
           itemBuilder: (context, current) =>
               InkWell(

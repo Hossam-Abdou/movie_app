@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                     ..getNowPlaying()
                     ..getUpComing()
                     ..gettrend()
-                    ..getGenre()),
+                    ),
               BlocProvider(
                 create: (context) => newscubit()..getnews(),
               )

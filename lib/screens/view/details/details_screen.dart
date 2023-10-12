@@ -35,7 +35,7 @@ class DetailsScreen extends StatelessWidget {
           body: Column(
             children: [
               SizedBox(
-                height: 260.h,
+                height: 294.h,
                 child: Stack(
                   children: [
                     ClipRRect(
@@ -52,7 +52,7 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     Positioned(
                       right: 10.w,
-                      bottom: 90.h,
+                      bottom: 120.h,
                       child: Row(
                         children: [
                           Icon(Icons.star_border,color: Colors.deepOrange,),
@@ -61,7 +61,7 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                        top: 130.h,
+                        top: 160.h,
                       left: 29.w,
                       child: Row(
                         children: [
@@ -77,12 +77,10 @@ class DetailsScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding:  EdgeInsets.only(top: 50.0.h),
-                                child: SizedBox(
-                                    width: 180.w,
-                                    child: Text('${id!.title}',style: GoogleFonts.poppins(color: Colors.white,fontSize: 18.sp,fontWeight: FontWeight.w300),)),
-                              ),
+                              SizedBox(height: 25.h,),
+                              SizedBox(
+                                  width: 180.w,
+                                  child: Text('${id!.title}',style: GoogleFonts.poppins(color: Colors.white,fontSize: 18.sp,fontWeight: FontWeight.w300),)),
                               TextButton(
                                   onPressed: ()
                                    {
@@ -103,7 +101,7 @@ class DetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(height: 25.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -129,7 +127,7 @@ class DetailsScreen extends StatelessWidget {
               SizedBox(height: 25.h,),
               DetailsTabs(),
              cubit.index==0? Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 29.0.w),
+                padding:  EdgeInsets.symmetric(horizontal: 22.0.w),
                 child: Text('${id!.overview}',style: GoogleFonts.poppins(fontSize: 12.sp,fontWeight: FontWeight.w300,color: Colors.white),),
               ):
              cubit.index==1?

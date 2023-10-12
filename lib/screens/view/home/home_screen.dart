@@ -122,46 +122,7 @@ class HomeScreen extends StatelessWidget {
                     child: cubit.index==0 ? NowPlayingScreen():
                     cubit.index==1?UpComingScreen():
                     cubit.index==2?TopRatedScreen():
-                    GridView.builder(
-                      physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: cubit.popularMovieModel?.results?.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 15,
-                          childAspectRatio: 0.63,
-                          crossAxisSpacing: 15),
-                      itemBuilder: (context, current) =>
-                          InkWell(
-                            onTap: ()
-                            {
-                              cubit.GetReview(cubit
-                                  .popularMovieModel!.results![current]
-                                  .id as int);
-                              cubit.getd(cubit
-                                  .popularMovieModel!.results![current]
-                                  .id as int);
-                              cubit.GetCast(cubit
-                                  .popularMovieModel!.results![current]
-                                  .id as int);
-                              cubit.getVideos(cubit
-                                  .popularMovieModel!.results![current]
-                                  .id as int);
-                              pushNavigate(context, DetailsScreen(id:cubit.popularMovieModel?.results![current]  ));
-                            },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  width: 180.w, height: 210.h,
-                                  child: Image.network('${EndPoints.linkImage}/${cubit.popularMovieModel?.results?[current].posterPath}'),),
-                                SizedBox(height: 10.h,),
-                                Text('${cubit.popularMovieModel?.results?[current].title}',
-                                  style: TextStyle(color: Colors.white),),
-                              ],
-                            ),
-                          ),
-                    )
+                    PopularScreen()
                   )
 
 

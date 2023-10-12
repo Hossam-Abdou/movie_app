@@ -30,7 +30,7 @@ final items = <Widget>[
       color: Colors.white,
     ),
     Icon(
-      Icons.newspaper_outlined,
+      Icons.newspaper_sharp,
       size: 30.sp,
       color: Colors.white,
     ),
