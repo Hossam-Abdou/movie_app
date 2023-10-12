@@ -1,10 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:socer_project/screens/model/cast_model.dart';
 import 'package:socer_project/screens/model/video_model.dart';
 import 'package:socer_project/service/cache/secure_storage.dart';
-import '../../model.dart';
 import '../../utils/end_points/urls.dart';
 import '../model/genre_model.dart';
 import '../model/model.dart';
@@ -22,27 +20,7 @@ class SystemCubit extends Cubit<SystemState> {
   SystemCubit() : super(SystemInitial());
 
   static SystemCubit get(context) => BlocProvider.of(context);
-  Model? model;
 
-  getLive() async {
-    emit(GetLiveLoadingState());
-    await DioHelper.getData(
-      url: 'v1/currentMatches',
-      query: {"offset": 0, 'apikey': '9cf10217-963c-46dd-87df-5a189e7d6251'},
-    ).then((value) {
-      if (value.data['status'] == 200 || value.data['status'] == 201) {
-        emit(GetLiveSuccessState());
-      }
-    }).catchError((error) {
-      print(error.toString());
-      if (error is DioException && error.response?.statusCode == 401) {
-        final data = error.response?.data;
-        final message = data['message'];
-        print(message);
-      }
-      emit(GetLiveErrorState());
-    });
-  }
 
   TopRatedMovieModel? topRatedMovieModel;
 
@@ -178,7 +156,6 @@ ReviewModel? reviewModel;
     DioHelper.getData(
         url:'movie/$id/${EndPoints.reviews}' ,
         query: {
-          'language':'en-US',
           'page':1
         }
     )
