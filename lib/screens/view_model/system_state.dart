@@ -8,6 +8,7 @@ class changeindex extends SystemState {}
 
 class ChangeIndexState extends SystemState {}
 class ModeSuccess extends SystemState {}
+class c extends SystemState {}
 
 
 class GetLiveLoadingState extends SystemState{}

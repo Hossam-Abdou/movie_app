@@ -46,7 +46,7 @@ final items = <Widget>[
   var boardcontroller = PageController();
 
   List<Widget> layouts = [
-HomeScreen(),
+    HomeScreen(),
     NewsScreen(),
     
   ];
@@ -70,7 +70,7 @@ HomeScreen(),
   void getPopular() {
     emit(LoadingGetPopularMovieState());
     DioHelper.getData(
-        url: EndPoints.popular
+        url: EndPoints.popular,
     ).then((value) {
       popularMovieModel = PopularMovieModel.fromJson(value.data);
 

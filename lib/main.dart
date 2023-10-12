@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
                   home: AnimatedSplashScreen(
                     splash: Center(
                       child: Lottie.asset('images/movie_splash.json',
-                          width: 350.w, height: 350.h, fit: BoxFit.cover),
+                          width: 280.w, height: 300.h, fit: BoxFit.cover),
                     ),
                     duration: 3500,
                     nextScreen: HomeNavPage(),
