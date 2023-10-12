@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:socer_project/screens/model/cast_model.dart';
 import 'package:socer_project/screens/model/video_model.dart';
 import 'package:socer_project/service/cache/secure_storage.dart';
@@ -13,6 +14,8 @@ import '../model/top_rated_model.dart';
 import '../../service/dio_helper/dio_helper.dart';
 import '../model/trending_model.dart';
 import '../model/upcoming_model.dart';
+import '../view/home/home_screen.dart';
+import '../view/news/news_screen.dart';
 
 part 'system_state.dart';
 
@@ -20,7 +23,33 @@ class SystemCubit extends Cubit<SystemState> {
   SystemCubit() : super(SystemInitial());
 
   static SystemCubit get(context) => BlocProvider.of(context);
+final items = <Widget>[
+    Icon(
+      Icons.movie_sharp,
+      size: 30.sp,
+      color: Colors.white,
+    ),
+    Icon(
+      Icons.newspaper_outlined,
+      size: 30.sp,
+      color: Colors.white,
+    ),
+   
+  ];
+  int currentindex = 0;
 
+  void changecurrentindex(index) {
+    currentindex = index;
+    emit(changeindex());
+  }
+
+  var boardcontroller = PageController();
+
+  List<Widget> layouts = [
+HomeScreen(),
+    NewsScreen(),
+    
+  ];
 
   TopRatedMovieModel? topRatedMovieModel;
 

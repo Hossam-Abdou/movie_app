@@ -4,6 +4,7 @@ part of 'system_cubit.dart';
 abstract class SystemState {}
 
 class SystemInitial extends SystemState {}
+class changeindex extends SystemState {}
 
 class ChangeIndexState extends SystemState {}
 class ModeSuccess extends SystemState {}
