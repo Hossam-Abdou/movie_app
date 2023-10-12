@@ -20,17 +20,15 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = SystemCubit.get(context);
         return Scaffold(
-          backgroundColor: CustomColors.greyText,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: CustomColors.greyText,
             actions: [
               IconButton(onPressed: ()
 
               {
                 cubit.changeMode();
               },
-                  icon: Icon(Icons.light_mode_outlined,color: Colors.white,))
+                  icon: const Icon(Icons.brightness_4_sharp),)
             ],
           ),
           body: SafeArea(
@@ -67,7 +65,6 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: 240.h,
                     child: ListView.separated(
-
                       physics: BouncingScrollPhysics(),
                       separatorBuilder: (context, index) => SizedBox(width: 10.w,),
                       itemCount:cubit.trendingMovieModel?.results?.length??0,
@@ -117,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                       itemCount: cubit.taps.length,
                       separatorBuilder: (context, index) => SizedBox(width: 10.w,),
                       scrollDirection: Axis.horizontal,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemBuilder:(context, index) => InkWell(
                         onTap: ()
                           {

@@ -1,4 +1,3 @@
-
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:socer_project/screens/view_model/system_cubit.dart';
 import 'package:socer_project/screens/view/home/home_screen.dart';
 import 'package:socer_project/service/cache/secure_storage.dart';
 import 'package:socer_project/service/dio_helper/dio_helper.dart';
+import 'package:socer_project/utils/colors/custom_colors.dart';
 
 import 'blocs/bloc_observer.dart';
 
@@ -17,13 +17,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.init();
   Bloc.observer = MyBlocObserver();
-await SecureStorage().readSecureData('darkMode');
+  var isDark = await SecureStorage().storage.read(key: 'darkMode');
 
-  runApp(MyApp( ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
 
+  MyApp();
 
   @override
   Widget build(BuildContext context) {
@@ -32,59 +33,58 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-
-
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => SystemCubit()..GetTopRated()..getPopular()..getNowPlaying()..getUpComing()..gettrend()..getGenre())
+              BlocProvider(
+                  create: (context) => SystemCubit()
+                    ..GetTopRated()
+                    ..getPopular()
+                    ..getNowPlaying()
+                    ..getUpComing()
+                    ..gettrend()
+                    ..getGenre()
+              )
             ],
             child: BlocBuilder<SystemCubit, SystemState>(
-               builder: (context, state) {
-                 var cubit=SystemCubit.get(context);
-             return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                  appBarTheme: AppBarTheme(color: Color(0xff7985ff)),
-                  floatingActionButtonTheme: FloatingActionButtonThemeData(
-                      backgroundColor: Color(0xff7985ff)),
-                  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                    selectedItemColor:Color(0xff7985ff) ,
+              builder: (context, state) {
+                var cubit = SystemCubit.get(context);
+                return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  theme: ThemeData(
+                    primarySwatch: Colors.blueGrey,
+                    scaffoldBackgroundColor: Colors.white70,
+                    appBarTheme: AppBarTheme(
+                      backgroundColor: Colors.blueGrey,
+                      elevation: 0.0,
+                      iconTheme: IconThemeData(color: Colors.white),
+                    ),
                   ),
-                  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)
-              ),
-              darkTheme: ThemeData(
-                primarySwatch: Colors.deepOrange,
-                scaffoldBackgroundColor: Colors.grey,
-
-                appBarTheme: AppBarTheme(
-                    backgroundColor: Color(0xff7985ff),
-                    titleTextStyle: TextStyle(fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                    systemOverlayStyle: SystemUiOverlayStyle(
-                        statusBarIconBrightness: Brightness.light,
-                        statusBarColor: Color(0xff333739)),
-                    elevation: 0.0,
-                    iconTheme: IconThemeData(color: Colors.white)
-                ),
-              ),
-              themeMode: cubit.dark? ThemeMode.dark:ThemeMode.light,
-              home: AnimatedSplashScreen(
-                splash: Center(
-                  child: Lottie.asset('images/movie_splash.json',
-                      width: 350.w, height: 350.h, fit: BoxFit.cover),
-                ),
-                duration: 3500,
-                nextScreen:HomeScreen(),
-                backgroundColor: Colors.white,
-                splashTransition: SplashTransition.slideTransition,
-                curve: Curves.bounceIn,
-              ),
-            );
-  },
-),
+                  darkTheme: ThemeData(
+                    appBarTheme: AppBarTheme(
+                      color: CustomColors.greyText,
+                      iconTheme: IconThemeData(color: Colors.blueGrey),
+                      titleTextStyle: TextStyle(color: Colors.white),
+                    ),
+                    primaryColor: CustomColors.greyText,
+                    primarySwatch: Colors.blueGrey,
+                    scaffoldBackgroundColor: CustomColors.greyText,
+                  ),
+                  themeMode: cubit.dark ? ThemeMode.dark : ThemeMode.light,
+                  home: AnimatedSplashScreen(
+                    splash: Center(
+                      child: Lottie.asset('images/movie_splash.json',
+                          width: 350.w, height: 350.h, fit: BoxFit.cover),
+                    ),
+                    duration: 3500,
+                    nextScreen: HomeScreen(),
+                    backgroundColor: Colors.white,
+                    splashTransition: SplashTransition.slideTransition,
+                    curve: Curves.bounceIn,
+                  ),
+                );
+              },
+            ),
           );
         });
   }
 }
-
