@@ -26,16 +26,13 @@ class SystemCubit extends Cubit<SystemState> {
 
   static SystemCubit get(context) => BlocProvider.of(context);
 
-
   var search = TextEditingController();
 
   var searchKey = GlobalKey<FormState>();
 
-
-
 // Bottom Navigation Bar
-  
-final items = <Widget>[
+
+  final items = <Widget>[
     Icon(
       Icons.movie_sharp,
       size: 30.sp,
@@ -46,45 +43,34 @@ final items = <Widget>[
       size: 30.sp,
       color: Colors.white,
     ),
-  Icon(
-    Icons.newspaper_sharp,
-    size: 30.sp,
-    color: Colors.white,
-  ),
-
+    Icon(
+      Icons.newspaper_sharp,
+      size: 30.sp,
+      color: Colors.white,
+    ),
   ];
   int currentIndex = 0;
 
   void changeCurrentIndex(index) {
     currentIndex = index;
-    emit(changeindex());
+    emit(ChangeIndex());
   }
 
   List<Widget> layouts = [
-    HomeScreen(),
-    SearchScreen(),
-    NewsScreen(),
-
-
+    const HomeScreen(),
+    const SearchScreen(),
+    const NewsScreen(),
   ];
-
-
-
 
 // home Screen
 
   TrendingMovieModel? trendingMovieModel;
-  void getTrend() {
 
+  void getTrend() {
     emit(GetTrendLoadingState());
     DioHelper.getData(
         url: EndPoints.trend,
-        query: {
-          'language':'$currentLanguage'
-        }
-
-    ).then((value) {
-
+        query: {'language': '$currentLanguage'}).then((value) {
       trendingMovieModel = TrendingMovieModel.fromJson(value.data);
 
       emit(GetTrendSuccessState());
@@ -100,10 +86,7 @@ final items = <Widget>[
     emit(LoadingGetTopRatedMovieState());
     DioHelper.getData(
         url: EndPoints.topRated,
-        query: {
-          'language':'$currentLanguage'
-        }
-    ).then((value) {
+        query: {'language': '$currentLanguage'}).then((value) {
       topRatedMovieModel = TopRatedMovieModel.fromJson(value.data);
 
       emit(SuccessGetTopRatedMovieState());
@@ -119,10 +102,7 @@ final items = <Widget>[
     emit(LoadingGetPopularMovieState());
     DioHelper.getData(
         url: EndPoints.popular,
-      query: {
-          'language':'$currentLanguage'
-      }
-    ).then((value) {
+        query: {'language': '$currentLanguage'}).then((value) {
       popularMovieModel = PopularMovieModel.fromJson(value.data);
 
       emit(SuccessGetPopularMovieState());
@@ -132,54 +112,45 @@ final items = <Widget>[
     });
   }
 
-
   NowPlayingModel? nowPlayingModel;
 
   void getNowPlaying() {
     emit(LoadingGetNowPlayingState());
     DioHelper.getData(
         url: EndPoints.nowPlaying,
-        query: {
-          'language':'$currentLanguage'
-        }
-    ).then((value) {
+        query: {'language': '$currentLanguage'}).then((value) {
       nowPlayingModel = NowPlayingModel.fromJson(value.data);
 
       emit(SuccessGetNowPlayingState());
     }).catchError((error) {
       print(error.toString());
-      emit(FailedGettNowPlayingtate());
+      emit(FailedGetNowPlayingState());
     });
   }
 
   UpcomingMovieModel? upcomingMovieModel;
+
   void getUpComing() {
     emit(LoadingGetUpComingState());
     DioHelper.getData(
         url: EndPoints.upcoming,
-        query: {
-          'language':'$currentLanguage'
-        }
-    ).then((value) {
+        query: {'language': '$currentLanguage'}).then((value) {
       upcomingMovieModel = UpcomingMovieModel.fromJson(value.data);
 
       emit(SuccessGetUpComingState());
     }).catchError((error) {
       print(error.toString());
-      emit(FailedGettUpComingtate());
+      emit(FailedGetUpComingState());
     });
   }
 
   SearchModel? searchModel;
+
   void getSearch(String movie) {
     emit(GetSearchLoadingState());
     DioHelper.getData(
         url: EndPoints.search,
-        query: {
-          'query':movie,
-          'language':'$currentLanguage'
-        }
-    ).then((value) {
+        query: {'query': movie, 'language': '$currentLanguage'}).then((value) {
       searchModel = SearchModel.fromJson(value.data);
 
       emit(GetSearchSuccessState());
@@ -192,54 +163,54 @@ final items = <Widget>[
   // Home Tabs
   int index = 0;
 
-  void ChangeIndex(currentIndex) {
+  void changeIndex(currentIndex) {
     index = currentIndex;
     emit(ChangeIndexState());
   }
+
 // change Language in App [ Localization ]
   String? currentLanguage;
 
   void toggleLanguage() {
     if (currentLanguage == 'ar') {
       currentLanguage = 'en';
-      emit(languageChange());
+      emit(LanguageChange());
     } else {
       currentLanguage = 'ar';
-      emit(languageChange());
+      emit(LanguageChange());
     }
   }
 
   changeLang() {
-
-    if(Intl.getCurrentLocale() == 'en')
-    {
-      S.load(Locale('ar'));
-    }else
-    {
-      S.load(Locale('en'));
+    if (Intl.getCurrentLocale() == 'en') {
+      S.load(const Locale('ar'));
+    } else {
+      S.load(const Locale('en'));
     }
   }
 
 // Dark Mode
-  bool dark=false;
-  void changeMode({bool? mode}) async{
+  bool dark = false;
+
+  void changeMode({bool? mode}) async {
     if (mode != null) {
       dark = mode;
       emit(ModeSuccess());
     } else {
       dark = !dark;
-      SharedPrefrenceHelper.saveData(key:'darkMode', value: dark);
+      SharedPrefrenceHelper.saveData(key: 'darkMode', value: dark);
       emit(ModeSuccess());
     }
   }
 
 // details Screen
-VideoModel? videoModel;
+
+  VideoModel? videoModel;
+
   void getVideos(id) {
     emit(GetVideoLoadingState());
     DioHelper.getData(
-        url: '${EndPoints.video}/$id/videos',
-
+      url: '${EndPoints.video}/$id/videos',
     ).then((value) {
       videoModel = VideoModel.fromJson(value.data);
 
@@ -250,12 +221,11 @@ VideoModel? videoModel;
     });
   }
 
-GenreModel? genreModel;
+  GenreModel? genreModel;
+
   void getGenre(id) {
     emit(GetVideoLoadingState());
-    DioHelper.getData(
-        url: '${EndPoints.video}/$id'
-    ).then((value) {
+    DioHelper.getData(url: '${EndPoints.video}/$id').then((value) {
       genreModel = GenreModel.fromJson(value.data);
 
       emit(GetVideoSuccessState());
@@ -266,45 +236,33 @@ GenreModel? genreModel;
   }
 
   ReviewModel? reviewModel;
-  void GetReview(int id){
+
+  void GetReview(int id) {
     emit(LoadingGetReviewState());
-    DioHelper.getData(
-        url:'movie/$id/${EndPoints.reviews}' ,
-        query: {
-          'page':1,
-          'language':'$currentLanguage',
-        }
-    )
-        .then((value) {
-      reviewModel=ReviewModel.fromJson(value.data);
+    DioHelper.getData(url: 'movie/$id/${EndPoints.reviews}', query: {
+      'page': 1,
+      'language': '$currentLanguage',
+    }).then((value) {
+      reviewModel = ReviewModel.fromJson(value.data);
       emit(SuccessGetReviewState());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(FailedGetReviewState());
     });
   }
 
   CastModel? castModel;
-  void GetCast(int id){
+
+  void GetCast(int id) {
     emit(GetCastLoadingState());
     DioHelper.getData(
-        url:'movie/$id/${EndPoints.credits}' ,
-        query: {
-          'language':'en-US',
-          'page':1
-        }
-    )
-        .then((value) {
-      castModel=CastModel.fromJson(value.data);
+        url: 'movie/$id/${EndPoints.credits}',
+        query: {'language': 'en-US', 'page': 1}).then((value) {
+      castModel = CastModel.fromJson(value.data);
       emit(GetCastSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(GetCastErrorState());
     });
   }
-
-
-
-
-
 }

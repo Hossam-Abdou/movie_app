@@ -1,11 +1,11 @@
-abstract class newsstate
+abstract class NewsState
 {
 
 }
-class newsinitstate extends newsstate{}
+class NewsInitState extends NewsState{}
 
-class newsloadingstate extends newsstate{}
-class newssuccessstate extends newsstate{}
-class newserrorstate extends newsstate{}
+class NewsLoadingState extends NewsState{}
+class NewsSuccessState extends NewsState{}
+class NewsErrorState extends NewsState{}
 
-class languageChange extends newsstate{}
+class LanguageChange extends NewsState{}

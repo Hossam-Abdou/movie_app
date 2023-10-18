@@ -11,26 +11,27 @@ class NewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<newscubit, newsstate>(
+    return BlocConsumer<NewsCubit, NewsState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var Cubit = newscubit.get(context);
+        var cubit = NewsCubit.get(context);
         return Scaffold(
-            body: Padding(
-          padding: EdgeInsets.all(8.0.r),
-          child: ListView.separated(
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return newswidget(
-                article1: Cubit.newsModel?.articles?[index],
-              );
-            },
-            separatorBuilder: (context, index) => SizedBox(
-              height: 10.h,
+          body: Padding(
+            padding: EdgeInsets.all(8.0.r),
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return NewsWidget(
+                  article1: cubit.newsModel?.articles?[index],
+                );
+              },
+              separatorBuilder: (context, index) => SizedBox(
+                height: 10.h,
+              ),
+              itemCount: cubit.newsModel?.articles?.length ?? 0,
             ),
-            itemCount: Cubit.newsModel?.articles?.length ?? 0,
           ),
-        ));
+        );
       },
     );
   }

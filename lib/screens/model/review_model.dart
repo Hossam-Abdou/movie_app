@@ -5,20 +5,18 @@ class ReviewModel {
   dynamic totalPages;
   dynamic totalResults;
 
-
   ReviewModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     page = json['page'];
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(Results.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
-
 }
 
 class Results {
@@ -30,12 +28,10 @@ class Results {
   String? updatedAt;
   String? url;
 
-
-
   Results.fromJson(Map<String, dynamic> json) {
     author = json['author'];
     authorDetails = json['author_details'] != null
-        ? new AuthorDetails.fromJson(json['author_details'])
+        ? AuthorDetails.fromJson(json['author_details'])
         : null;
     content = json['content'];
     createdAt = json['created_at'];
@@ -43,7 +39,6 @@ class Results {
     updatedAt = json['updated_at'];
     url = json['url'];
   }
-
 }
 
 class AuthorDetails {
@@ -52,12 +47,10 @@ class AuthorDetails {
   String? avatarPath;
   dynamic rating;
 
-
   AuthorDetails.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     username = json['username'];
     avatarPath = json['avatar_path'];
     rating = json['rating'];
   }
-
 }

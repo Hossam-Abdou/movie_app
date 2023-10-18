@@ -27,42 +27,42 @@ class GenreModel {
 
   GenreModel(
       {this.adult,
-        this.backdropPath,
-        this.belongsToCollection,
-        this.budget,
-        this.genres,
-        this.homepage,
-        this.id,
-        this.imdbId,
-        this.originalLanguage,
-        this.originalTitle,
-        this.overview,
-        this.popularity,
-        this.posterPath,
-        this.productionCompanies,
-        this.productionCountries,
-        this.releaseDate,
-        this.revenue,
-        this.runtime,
-        this.spokenLanguages,
-        this.status,
-        this.tagline,
-        this.title,
-        this.video,
-        this.voteAverage,
-        this.voteCount});
+      this.backdropPath,
+      this.belongsToCollection,
+      this.budget,
+      this.genres,
+      this.homepage,
+      this.id,
+      this.imdbId,
+      this.originalLanguage,
+      this.originalTitle,
+      this.overview,
+      this.popularity,
+      this.posterPath,
+      this.productionCompanies,
+      this.productionCountries,
+      this.releaseDate,
+      this.revenue,
+      this.runtime,
+      this.spokenLanguages,
+      this.status,
+      this.tagline,
+      this.title,
+      this.video,
+      this.voteAverage,
+      this.voteCount});
 
   GenreModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     belongsToCollection = json['belongs_to_collection'] != null
-        ? new BelongsToCollection.fromJson(json['belongs_to_collection'])
+        ? BelongsToCollection.fromJson(json['belongs_to_collection'])
         : null;
     budget = json['budget'];
     if (json['genres'] != null) {
       genres = <Genres>[];
       json['genres'].forEach((v) {
-        genres!.add(new Genres.fromJson(v));
+        genres!.add(Genres.fromJson(v));
       });
     }
     homepage = json['homepage'];
@@ -76,13 +76,13 @@ class GenreModel {
     if (json['production_companies'] != null) {
       productionCompanies = <ProductionCompanies>[];
       json['production_companies'].forEach((v) {
-        productionCompanies!.add(new ProductionCompanies.fromJson(v));
+        productionCompanies!.add(ProductionCompanies.fromJson(v));
       });
     }
     if (json['production_countries'] != null) {
       productionCountries = <ProductionCountries>[];
       json['production_countries'].forEach((v) {
-        productionCountries!.add(new ProductionCountries.fromJson(v));
+        productionCountries!.add(ProductionCountries.fromJson(v));
       });
     }
     releaseDate = json['release_date'];
@@ -91,7 +91,7 @@ class GenreModel {
     if (json['spoken_languages'] != null) {
       spokenLanguages = <SpokenLanguages>[];
       json['spoken_languages'].forEach((v) {
-        spokenLanguages!.add(new SpokenLanguages.fromJson(v));
+        spokenLanguages!.add(SpokenLanguages.fromJson(v));
       });
     }
     status = json['status'];
@@ -103,7 +103,7 @@ class GenreModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['adult'] = adult;
     data['backdrop_path'] = backdropPath;
     if (belongsToCollection != null) {
@@ -162,7 +162,7 @@ class BelongsToCollection {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['poster_path'] = posterPath;
@@ -183,7 +183,7 @@ class Genres {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     return data;
@@ -206,7 +206,7 @@ class ProductionCompanies {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['logo_path'] = logoPath;
     data['name'] = name;
@@ -227,7 +227,7 @@ class ProductionCountries {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['iso_3166_1'] = iso31661;
     data['name'] = name;
     return data;
@@ -248,7 +248,7 @@ class SpokenLanguages {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['english_name'] = englishName;
     data['iso_639_1'] = iso6391;
     data['name'] = name;

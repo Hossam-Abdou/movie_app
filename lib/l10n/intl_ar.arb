@@ -1,16 +1,15 @@
 {
-  "title":"الافلام",
-
+  "title": "مــوڨــى زون",
   "homeTab1": "يعرض الأن",
   "homeTab2": "القادمة",
   "homeTab3": "الاعلي تقييما",
   "homeTab4": "المشهورة",
-
-  "detailsTab1": "عن الفلم",
+  "detailsTab1": "عن الفيلم",
   "detailsTab2": "المراجعات",
   "detailsTab3": "الممثلين",
   "detailsAppBar": "التفاصيل",
   "noReviews": "لا يوجد مراجعات حاليا",
-  "charName":"اسم الشخصية",
-  "search":"البحث"
+  "charName": "اسم الشخصية",
+  "search": "البحث",
+  "watchNow": "شاهد الآن"
 }

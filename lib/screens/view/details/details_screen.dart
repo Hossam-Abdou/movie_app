@@ -22,37 +22,53 @@ class DetailsScreen extends StatelessWidget {
     return BlocConsumer<SystemCubit, SystemState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit=SystemCubit.get(context);
+        var cubit = SystemCubit.get(context);
         return Directionality(
-          textDirection:  cubit.currentLanguage=='ar'?TextDirection.rtl:TextDirection.ltr,
+          textDirection: cubit.currentLanguage == 'ar'
+              ? TextDirection.rtl
+              : TextDirection.ltr,
           child: Scaffold(
             appBar: AppBar(
-              title:  Text(S.of(context).detailsAppBar,style: GoogleFonts.roboto(color:  cubit.dark? Colors.white:Colors.black,fontSize: 20.sp),),
+              title: Text(
+                S.of(context).detailsAppBar,
+                style: GoogleFonts.roboto(
+                  color: cubit.dark ? Colors.white : Colors.black,
+                  fontSize: 20.sp,
+                ),
+              ),
               centerTitle: true,
               elevation: 0.0,
               leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.arrow_back_sharp,color:  cubit.dark? Colors.white:Colors.black,)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_sharp,
+                  color: cubit.dark ? Colors.white : Colors.black,
+                ),
+              ),
             ),
-            body: ListView(
-              children:[ Column(
+            body: ListView(children: [
+              Column(
                 children: [
                   SizedBox(
                     height: 294.h,
                     child: Stack(
                       children: [
                         ClipRRect(
-                               borderRadius: BorderRadius.only(
-                              bottomRight:Radius.circular(16.r),
-                              bottomLeft: Radius.circular(16.r)
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(
+                              16.r,
+                            ),
+                            bottomLeft: Radius.circular(
+                              16.r,
+                            ),
                           ),
                           child: Image.network(
                             '${EndPoints.linkImage}/${id!.backdropPath}',
                             fit: BoxFit.cover,
                             height: 180.h,
-                            width:double.infinity,
+                            width: double.infinity,
                           ),
                         ),
                         Positioned(
@@ -60,91 +76,170 @@ class DetailsScreen extends StatelessWidget {
                           bottom: 120.h,
                           child: Row(
                             children: [
-                              const Icon(Icons.star_border,color: Colors.deepOrange,),
-                              Text('${id!.voteAverage}',style: GoogleFonts.poppins(color: Colors.deepOrange,fontSize: 18.sp,fontWeight: FontWeight.w300),)
+                              const Icon(
+                                Icons.star_border,
+                                color: Colors.deepOrange,
+                              ),
+                              Text(
+                                '${id!.voteAverage}',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.deepOrange,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              )
                             ],
                           ),
                         ),
                         Positioned(
-                            top: 160.h,
+                          top: 160.h,
                           left: 29.w,
                           child: Row(
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(16.r),
+                                borderRadius: BorderRadius.circular(
+                                  16.r,
+                                ),
                                 child: Image.network(
                                   '${EndPoints.linkImage}/${id!.posterPath}',
                                   height: 130.h,
-                                  width:95.w,
+                                  width: 95.w,
                                 ),
                               ),
-                              SizedBox(width: 10.w,),
+                              SizedBox(
+                                width: 10.w,
+                              ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: 25.h,),
                                   SizedBox(
-                                      width: 180.w,
-                                      child: Text('${id!.title}',style: GoogleFonts.poppins(color:  cubit.dark? Colors.white:Colors.black,fontSize: 18.sp,fontWeight: FontWeight.w300),)),
+                                    height: 25.h,
+                                  ),
+                                  SizedBox(
+                                    width: 180.w,
+                                    child: Text(
+                                      '${id!.title}',
+                                      style: GoogleFonts.poppins(
+                                        color: cubit.dark
+                                            ? Colors.white
+                                            : Colors.black,
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ),
                                   TextButton(
-                                      onPressed: ()
-                                       {
-                                        // launch('https://www.youtube.com/watch?v=${id.id}');
+                                    onPressed: () {
+                                      // launch('https://www.youtube.com/watch?v=${id.id}');
 
-                                         pushNavigate(context, VideosScreen(id:id));
-
-                                      },
-                                      child: const Text('Watch Now'),)
+                                      pushNavigate(
+                                        context,
+                                        VideosScreen(
+                                          id: id,
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      S.of(context).watchNow,
+                                    ),
+                                  )
                                 ],
                               )
-
                             ],
                           ),
                         ),
-
-
                       ],
                     ),
                   ),
-                  SizedBox(height: 22.h,),
+                  SizedBox(
+                    height: 22.h,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const  Icon(Icons.calendar_today,color: Colors.blueGrey),
-                      Text('${id!.releaseDate}',style: GoogleFonts.poppins(color:  cubit.dark? Colors.white:Colors.black,),),
+                      const Icon(
+                        Icons.calendar_today,
+                        color: Colors.blueGrey,
+                      ),
+                      Text(
+                        '${id!.releaseDate}',
+                        style: GoogleFonts.poppins(
+                          color: cubit.dark ? Colors.white : Colors.black,
+                        ),
+                      ),
                       SizedBox(
                           height: 20.h,
-                          child:const VerticalDivider(width: 2,color: Colors.blueGrey,)),
-                      const Icon(Icons.language,color: Colors.blueGrey),
-                      Text('${id!.originalLanguage}',style: GoogleFonts.poppins(color:  cubit.dark? Colors.white:Colors.black,),),
+                          child: const VerticalDivider(
+                            width: 2,
+                            color: Colors.blueGrey,
+                          )),
+                      const Icon(
+                        Icons.language,
+                        color: Colors.blueGrey,
+                      ),
+                      Text(
+                        '${id!.originalLanguage}',
+                        style: GoogleFonts.poppins(
+                          color: cubit.dark ? Colors.white : Colors.black,
+                        ),
+                      ),
                       SizedBox(
-                          height: 20.h,
-
-                          child: const VerticalDivider(width: 2,color: Colors.blueGrey)),
-
-                     const Icon(Icons.airplane_ticket_rounded,color: Colors.blueGrey),
+                        height: 20.h,
+                        child: const VerticalDivider(
+                          width: 2,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                      const Icon(Icons.airplane_ticket_rounded,
+                          color: Colors.blueGrey),
                       SizedBox(
                         width: 90.w,
-                        child: Text('${cubit.genreModel?.genres?.map((genre) => genre.name).join(" , ")}',style: GoogleFonts.poppins(color:  cubit.dark? Colors.white:Colors.black,),),
+                        child: Text(
+                          '${cubit.genreModel?.genres?.map((genre) => genre.name).join(" , ")}',
+                          style: GoogleFonts.poppins(
+                            color: cubit.dark ? Colors.white : Colors.black,
+                          ),
+                        ),
                       )
                     ],
                   ),
-                  SizedBox(height: 25.h,),
-                  DetailsTabs(),
-                 cubit.index==0?
-                 Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 22.0.w),
-                    child: Text('${id!.overview}',style: GoogleFonts.poppins(fontSize: 12.sp,fontWeight: FontWeight.w300,color:  cubit.dark? Colors.white:Colors.black),),
-                  ):
-                 cubit.index==1?
-                 cubit.reviewModel!.results!.isEmpty?
-                 Center(child:  Text(S.of(context).noReviews,style: TextStyle(color:  cubit.dark? Colors.white:Colors.black),),
-                 ):
-                 ReviewsScreen():
-                 const CastScreen()
+                  SizedBox(
+                    height: 25.h,
+                  ),
+                  const DetailsTabs(),
+                  cubit.index == 0
+                      ? Padding(
+                          padding: EdgeInsets.only(
+                            right: 22.0.w,
+                            left: 22.0.w,
+                            bottom: 10.w,
+                          ),
+                          child: Text(
+                            '${id!.overview}',
+                            style: GoogleFonts.poppins(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w300,
+                              color: cubit.dark ? Colors.white : Colors.black,
+                            ),
+                          ),
+                        )
+                      : cubit.index == 1
+                          ? cubit.reviewModel!.results!.isEmpty
+                              ? Center(
+                                  child: Text(
+                                    S.of(context).noReviews,
+                                    style: TextStyle(
+                                      color: cubit.dark
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                )
+                              : const ReviewsScreen()
+                          : const CastScreen()
                 ],
-              ),]
-            ),
+              ),
+            ]),
           ),
         );
       },

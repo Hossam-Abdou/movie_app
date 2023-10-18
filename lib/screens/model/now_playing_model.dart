@@ -7,18 +7,18 @@ class NowPlayingModel {
 
   NowPlayingModel(
       {this.dates,
-        this.page,
-        this.results,
-        this.totalPages,
-        this.totalResults});
+      this.page,
+      this.results,
+      this.totalPages,
+      this.totalResults});
 
   NowPlayingModel.fromJson(Map<String, dynamic> json) {
-    dates = json['dates'] != null ? new Dates.fromJson(json['dates']) : null;
+    dates = json['dates'] != null ? Dates.fromJson(json['dates']) : null;
     page = json['page'];
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(Results.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -26,7 +26,7 @@ class NowPlayingModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (dates != null) {
       data['dates'] = dates!.toJson();
     }
@@ -52,7 +52,7 @@ class Dates {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['maximum'] = maximum;
     data['minimum'] = minimum;
     return data;
@@ -77,19 +77,19 @@ class Results {
 
   Results(
       {this.adult,
-        this.backdropPath,
-        this.genreIds,
-        this.id,
-        this.originalLanguage,
-        this.originalTitle,
-        this.overview,
-        this.popularity,
-        this.posterPath,
-        this.releaseDate,
-        this.title,
-        this.video,
-        this.voteAverage,
-        this.voteCount});
+      this.backdropPath,
+      this.genreIds,
+      this.id,
+      this.originalLanguage,
+      this.originalTitle,
+      this.overview,
+      this.popularity,
+      this.posterPath,
+      this.releaseDate,
+      this.title,
+      this.video,
+      this.voteAverage,
+      this.voteCount});
 
   Results.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
@@ -109,7 +109,7 @@ class Results {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['adult'] = adult;
     data['backdrop_path'] = backdropPath;
     data['genre_ids'] = genreIds;

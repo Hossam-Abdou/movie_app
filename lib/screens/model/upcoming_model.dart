@@ -1,14 +1,11 @@
-
-
 class UpcomingMovieModel {
-  Dates ?dates;
-  int ?page;
-  List<Results> ?results;
+  Dates? dates;
+  int? page;
+  List<Results>? results;
   dynamic totalPages;
   dynamic totalResults;
 
-
-  UpcomingMovieModel.fromJson(Map<String,dynamic> json) {
+  UpcomingMovieModel.fromJson(Map<String, dynamic> json) {
     dates = json['dates'] != null ? Dates.fromJson(json['dates']) : null;
     page = json['page'];
     if (json['results'] != null) {
@@ -20,41 +17,35 @@ class UpcomingMovieModel {
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
-
-
 }
 
 class Dates {
-  String ?maximum;
-  String ?minimum;
+  String? maximum;
+  String? minimum;
 
-
-  Dates.fromJson(Map<String,dynamic> json) {
+  Dates.fromJson(Map<String, dynamic> json) {
     maximum = json['maximum'];
     minimum = json['minimum'];
   }
-
-
-
 }
 
 class Results {
-  bool ?adult;
-  String ?backdropPath;
-  List<int> ?genreIds;
-  int ?id;
-  String ?originalLanguage;
-  String ?originalTitle;
-  String ?overview;
+  bool? adult;
+  String? backdropPath;
+  List<int>? genreIds;
+  int? id;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
   dynamic popularity;
-  String ?posterPath;
-  String ?releaseDate;
-  String ?title;
-  bool ?video;
+  String? posterPath;
+  String? releaseDate;
+  String? title;
+  bool? video;
   dynamic voteAverage;
   dynamic voteCount;
 
-  Results.fromJson(Map<String,dynamic> json) {
+  Results.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
@@ -70,6 +61,4 @@ class Results {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
-
-
 }

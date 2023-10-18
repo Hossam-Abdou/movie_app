@@ -13,8 +13,6 @@ class VideoModel {
       });
     }
   }
-
-
 }
 
 class Results {
@@ -31,15 +29,15 @@ class Results {
 
   Results(
       {this.iso6391,
-        this.iso31661,
-        this.name,
-        this.key,
-        this.site,
-        this.size,
-        this.type,
-        this.official,
-        this.publishedAt,
-        this.id});
+      this.iso31661,
+      this.name,
+      this.key,
+      this.site,
+      this.size,
+      this.type,
+      this.official,
+      this.publishedAt,
+      this.id});
 
   Results.fromJson(Map<String, dynamic> json) {
     iso6391 = json['iso_639_1'];
@@ -53,6 +51,4 @@ class Results {
     publishedAt = json['published_at'];
     id = json['id'];
   }
-
-
 }

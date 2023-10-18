@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "charName": MessageLookupByLibrary.simpleMessage("اسم الشخصية"),
         "detailsAppBar": MessageLookupByLibrary.simpleMessage("التفاصيل"),
-        "detailsTab1": MessageLookupByLibrary.simpleMessage("عن الفلم"),
+        "detailsTab1": MessageLookupByLibrary.simpleMessage("عن الفيلم"),
         "detailsTab2": MessageLookupByLibrary.simpleMessage("المراجعات"),
         "detailsTab3": MessageLookupByLibrary.simpleMessage("الممثلين"),
         "homeTab1": MessageLookupByLibrary.simpleMessage("يعرض الأن"),
@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noReviews":
             MessageLookupByLibrary.simpleMessage("لا يوجد مراجعات حاليا"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
-        "title": MessageLookupByLibrary.simpleMessage("الافلام")
+        "title": MessageLookupByLibrary.simpleMessage("مــوڨــى زون"),
+        "watchNow": MessageLookupByLibrary.simpleMessage("شاهد الآن")
       };
 }

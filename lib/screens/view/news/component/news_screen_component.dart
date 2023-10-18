@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:socer_project/screens/model/news_model.dart';
 
-class newswidget extends StatelessWidget {
-  Articles? article1;
-  newswidget({required this.article1, super.key});
+class NewsWidget extends StatelessWidget {
+  const NewsWidget({required this.article1, super.key});
+
+  final Articles? article1;
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +14,17 @@ class newswidget extends StatelessWidget {
       child: Container(
         //padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Color.fromARGB(218, 250, 245, 245),
+          color: const Color.fromARGB(218, 250, 245, 245),
           borderRadius: BorderRadius.circular(12.r),
           //  color: Colors.white
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Column(
           children: [
-            Image.network(article1?.urlToImage ??
-                'https://www.skynewsarabia.com/images/v1/2023/02/16/1597614/1200/630/1-1597614.jpg'),
+            Image.network(
+              article1?.urlToImage ??
+                  'https://www.skynewsarabia.com/images/v1/2023/02/16/1597614/1200/630/1-1597614.jpg',
+            ),
             Padding(
               padding: EdgeInsets.all(10.w),
               child: Column(
@@ -31,8 +34,10 @@ class newswidget extends StatelessWidget {
                     textDirection: TextDirection.ltr,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.sp,
+                    ),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -43,14 +48,18 @@ class newswidget extends StatelessWidget {
                         article1?.source?.name ?? 'سعد محمود',
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.sp),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.sp,
+                        ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         article1?.publishedAt ?? '2022',
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 14.sp),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.sp,
+                        ),
                       ),
                     ],
                   )

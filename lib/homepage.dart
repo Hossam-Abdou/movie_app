@@ -1,6 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:socer_project/screens/view_model/movie_cubit/system_cubit.dart';
@@ -14,22 +13,27 @@ class HomeNavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SystemCubit, SystemState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit = SystemCubit.get(context);
-        return Scaffold(
-          
+        return Directionality(
+          textDirection: cubit.currentLanguage == 'ar'
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          child: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
               backgroundColor: Colors.transparent,
               color: CustomColors.primaryButton,
               items: cubit.items,
               index: cubit.currentIndex,
               height: 50.h,
-              onTap: (currentindex) => cubit.changeCurrentIndex(currentindex),
+              onTap: (currentIndex) => cubit.changeCurrentIndex(
+                currentIndex,
+              ),
             ),
-            body: cubit.layouts[cubit.currentIndex]);
+            body: cubit.layouts[cubit.currentIndex],
+          ),
+        );
       },
     );
   }

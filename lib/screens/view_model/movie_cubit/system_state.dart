@@ -3,12 +3,12 @@
 abstract class SystemState {}
 
 class SystemInitial extends SystemState {}
-class changeindex extends SystemState {}
+class ChangeIndex extends SystemState {}
 
 
 class ChangeIndexState extends SystemState {}
 class ModeSuccess extends SystemState {}
-class languageChange extends SystemState {}
+class LanguageChange extends SystemState {}
 
 
 class GetLiveLoadingState extends SystemState{}
@@ -26,11 +26,11 @@ class FailedGetPopularMovieState extends SystemState {}
 
 class LoadingGetNowPlayingState extends SystemState {}
 class SuccessGetNowPlayingState extends SystemState {}
-class FailedGettNowPlayingtate extends SystemState {}
+class FailedGetNowPlayingState extends SystemState {}
 
 class LoadingGetUpComingState extends SystemState {}
 class SuccessGetUpComingState extends SystemState {}
-class FailedGettUpComingtate extends SystemState {}
+class FailedGetUpComingState extends SystemState {}
 
 class LoadingGetReviewState extends SystemState {}
 class SuccessGetReviewState extends SystemState {}

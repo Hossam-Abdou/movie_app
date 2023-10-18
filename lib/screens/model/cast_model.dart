@@ -3,7 +3,6 @@ class CastModel {
   List<Cast>? cast;
   List<Crew>? crew;
 
-
   CastModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     if (json['cast'] != null) {
@@ -19,7 +18,6 @@ class CastModel {
       });
     }
   }
-
 }
 
 class Cast {
@@ -36,7 +34,6 @@ class Cast {
   String? creditId;
   int? order;
 
-
   Cast.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     gender = json['gender'];
@@ -51,7 +48,6 @@ class Cast {
     creditId = json['credit_id'];
     order = json['order'];
   }
-
 }
 
 class Crew {
@@ -67,7 +63,6 @@ class Crew {
   String? department;
   String? job;
 
-
   Crew.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     gender = json['gender'];
@@ -81,5 +76,4 @@ class Crew {
     department = json['department'];
     job = json['job'];
   }
-
 }

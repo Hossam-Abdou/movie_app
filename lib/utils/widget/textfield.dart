@@ -18,7 +18,7 @@ class Custom extends StatelessWidget {
   IconData prefix;
   IconButton? suffix;
 
-  Custom({
+  Custom({super.key, 
     this.label,
     this.maxLines,
     this.validate,

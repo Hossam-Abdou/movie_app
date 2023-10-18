@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `M O V I E`
+  /// `M O V I E   Z O N E`
   String get title {
     return Intl.message(
-      'M O V I E',
+      'M O V I E   Z O N E',
       name: 'title',
       desc: '',
       args: [],
@@ -130,10 +130,10 @@ class S {
     );
   }
 
-  /// `'Details`
+  /// `Details`
   String get detailsAppBar {
     return Intl.message(
-      '\'Details',
+      'Details',
       name: 'detailsAppBar',
       desc: '',
       args: [],
@@ -165,6 +165,16 @@ class S {
     return Intl.message(
       'Search',
       name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Watch Now`
+  String get watchNow {
+    return Intl.message(
+      'Watch Now',
+      name: 'watchNow',
       desc: '',
       args: [],
     );

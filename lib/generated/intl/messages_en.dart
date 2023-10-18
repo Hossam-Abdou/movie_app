@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "charName":
             MessageLookupByLibrary.simpleMessage("C h a r a c t e r  N a m e"),
-        "detailsAppBar": MessageLookupByLibrary.simpleMessage("\'Details"),
+        "detailsAppBar": MessageLookupByLibrary.simpleMessage("Details"),
         "detailsTab1": MessageLookupByLibrary.simpleMessage("About Movie"),
         "detailsTab2": MessageLookupByLibrary.simpleMessage("Reviews"),
         "detailsTab3": MessageLookupByLibrary.simpleMessage("Cast"),
@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noReviews":
             MessageLookupByLibrary.simpleMessage("There are No Reviews Yet"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
-        "title": MessageLookupByLibrary.simpleMessage("M O V I E")
+        "title": MessageLookupByLibrary.simpleMessage("M O V I E   Z O N E"),
+        "watchNow": MessageLookupByLibrary.simpleMessage("Watch Now")
       };
 }
