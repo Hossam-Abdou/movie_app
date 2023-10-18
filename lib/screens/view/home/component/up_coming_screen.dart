@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../utils/end_points/urls.dart';
-import '../../../utils/widget/navigate.dart';
+import '../../../../utils/end_points/urls.dart';
+import '../../../../utils/widget/navigate.dart';
 
-import '../../view_model/system_cubit.dart';
-import '../details/details_screen.dart';
+import '../../../view_model/movie_cubit/system_cubit.dart';
+import '../../../view_model/movie_cubit/system_state.dart';
+import '../../details/details_screen.dart';
 
 
 class UpComingScreen extends StatelessWidget {
@@ -20,11 +21,11 @@ class UpComingScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit=SystemCubit.get(context);
         return GridView.builder(
-          physics: BouncingScrollPhysics(),
+          physics:const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: cubit.upcomingMovieModel?.results?.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               childAspectRatio: 0.62,
@@ -39,7 +40,7 @@ class UpComingScreen extends StatelessWidget {
                   cubit.GetCast(cubit
                       .upcomingMovieModel!.results![current]
                       .id as int);
-                  cubit.getd(cubit
+                  cubit.getGenre(cubit
                       .upcomingMovieModel!.results![current]
                       .id as int);
                   cubit.getVideos(cubit
@@ -50,11 +51,11 @@ class UpComingScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      width: 180.w, height: 210.h,
+                      width: 180.w, height: 208.h,
                       child: Image.network('${EndPoints.linkImage}/${cubit.upcomingMovieModel?.results?[current].posterPath}'),),
                     SizedBox(height: 10.h,),
                     Text('${cubit.upcomingMovieModel?.results?[current].title}',
-                      style: TextStyle(color: Colors.white),),
+                      style: TextStyle(color:  cubit.dark? Colors.white:Colors.black),),
                   ],
                 ),
               ),

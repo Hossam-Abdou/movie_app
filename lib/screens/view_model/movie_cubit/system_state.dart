@@ -1,14 +1,14 @@
-part of 'system_cubit.dart';
 
-@immutable
+
 abstract class SystemState {}
 
 class SystemInitial extends SystemState {}
 class changeindex extends SystemState {}
 
+
 class ChangeIndexState extends SystemState {}
 class ModeSuccess extends SystemState {}
-class c extends SystemState {}
+class languageChange extends SystemState {}
 
 
 class GetLiveLoadingState extends SystemState{}
@@ -51,3 +51,7 @@ class GetGenreErrorState extends SystemState {}
 class GetVideoLoadingState extends SystemState {}
 class GetVideoSuccessState extends SystemState {}
 class GetVideoErrorState extends SystemState {}
+
+class GetSearchLoadingState extends SystemState {}
+class GetSearchSuccessState extends SystemState {}
+class GetSearchErrorState extends SystemState {}

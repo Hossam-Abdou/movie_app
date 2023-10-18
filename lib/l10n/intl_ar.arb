@@ -1,0 +1,16 @@
+{
+  "title":"الافلام",
+
+  "homeTab1": "يعرض الأن",
+  "homeTab2": "القادمة",
+  "homeTab3": "الاعلي تقييما",
+  "homeTab4": "المشهورة",
+
+  "detailsTab1": "عن الفلم",
+  "detailsTab2": "المراجعات",
+  "detailsTab3": "الممثلين",
+  "detailsAppBar": "التفاصيل",
+  "noReviews": "لا يوجد مراجعات حاليا",
+  "charName":"اسم الشخصية",
+  "search":"البحث"
+}

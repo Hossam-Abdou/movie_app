@@ -8,6 +8,4 @@ class CustomColors {
   static Color greyText = const Color(0xFF030E19).withOpacity(0.7);
 
 }
-// Widget CustomText(){
-//   return Text(data);
-// }
+

@@ -4,29 +4,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
 import 'package:socer_project/homepage.dart';
+import 'package:socer_project/screens/view_model/movie_cubit/system_state.dart';
 import 'package:socer_project/screens/view_model/newscubit/news_cubit.dart';
-import 'package:socer_project/screens/view_model/system_cubit.dart';
-import 'package:socer_project/screens/view/home/home_screen.dart';
-import 'package:socer_project/service/cache/secure_storage.dart';
+import 'package:socer_project/screens/view_model/movie_cubit/system_cubit.dart';
+import 'package:socer_project/service/cache/sp_helper/sp_helper.dart';
 import 'package:socer_project/service/dio_helper/dio_helper.dart';
 import 'package:socer_project/utils/colors/custom_colors.dart';
 
 import 'blocs/bloc_observer.dart';
-import 'screens/view/news/news_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'generated/l10n.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.init();
   Bloc.observer = MyBlocObserver();
+  await SharedPrefrenceHelper.init();
+  var isDark=SharedPrefrenceHelper.getData(key:'darkMode');
 
-  runApp(MyApp());
+  runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp();
+  final isDark;
 
+
+  MyApp(this.isDark);
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -38,48 +45,67 @@ class MyApp extends StatelessWidget {
             providers: [
               BlocProvider(
                   create: (context) => SystemCubit()
-                    ..GetTopRated()
+                    ..getTopRated()
                     ..getPopular()
                     ..getNowPlaying()
                     ..getUpComing()
-                    ..gettrend()
+                    ..getTrend()
+                    ..changeMode(mode: isDark)
                     ),
               BlocProvider(
-                create: (context) => newscubit()..getnews(),
+                create: (context) => newscubit()
+                  ..getNews(),
               )
             ],
             child: BlocBuilder<SystemCubit, SystemState>(
               builder: (context, state) {
                 var cubit = SystemCubit.get(context);
                 return MaterialApp(
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
                   debugShowCheckedModeBanner: false,
+
                   theme: ThemeData(
+
                     primarySwatch: Colors.blueGrey,
-                    scaffoldBackgroundColor: Colors.grey[400],
-                    appBarTheme: AppBarTheme(
-                      titleTextStyle: TextStyle(color: Colors.black),
-                      backgroundColor: Colors.blueGrey,
-                      elevation: 0.0,
-                      iconTheme: IconThemeData(color: Colors.white),
-                    ),
+                      appBarTheme: AppBarTheme(
+                        elevation: 0.0,
+                        backgroundColor: Colors.grey[300],
+                        systemOverlayStyle: SystemUiOverlayStyle(
+                            statusBarColor: Colors.white10,
+                          statusBarIconBrightness: Brightness.dark
+                        ),
+                      ),
+                      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey),
                   ),
                   darkTheme: ThemeData(
+
                     appBarTheme: AppBarTheme(
-                      color: CustomColors.greyText,
-                      iconTheme: IconThemeData(color: Colors.blueGrey),
+                      elevation: 0.0,
+                      systemOverlayStyle: SystemUiOverlayStyle(
+                        statusBarBrightness: Brightness.light,
+                        statusBarColor: HexColor('333739'),
+                      ),
+                      backgroundColor: HexColor('333739'),
                       titleTextStyle: TextStyle(color: Colors.white),
                     ),
                     primaryColor: CustomColors.greyText,
                     primarySwatch: Colors.blueGrey,
                     scaffoldBackgroundColor: CustomColors.greyText,
                   ),
+
                   themeMode: cubit.dark ? ThemeMode.dark : ThemeMode.light,
                   home: AnimatedSplashScreen(
                     splash: Center(
                       child: Lottie.asset('images/movie_splash.json',
                           width: 280.w, height: 300.h, fit: BoxFit.cover),
                     ),
-                    duration: 3500,
+                    duration: 3000,
                     nextScreen: HomeNavPage(),
                     backgroundColor: Colors.white,
                     splashTransition: SplashTransition.slideTransition,

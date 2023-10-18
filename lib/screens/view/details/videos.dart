@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:socer_project/screens/view_model/system_cubit.dart';
+import 'package:socer_project/screens/view_model/movie_cubit/system_cubit.dart';
 import 'package:socer_project/utils/colors/custom_colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../../view_model/movie_cubit/system_state.dart';
 
 class VideosScreen extends StatelessWidget {
   dynamic id;
@@ -17,7 +19,6 @@ class VideosScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = SystemCubit.get(context);
         return Scaffold(
-          backgroundColor: CustomColors.primaryButton,
           body: Padding(
             padding: EdgeInsets.all(12.0.r),
             child: SafeArea(
@@ -58,7 +59,7 @@ class VideosScreen extends StatelessWidget {
                                 SizedBox(height: 10.h,),
                                 SizedBox(
                                   child: Text('${cubit.videoModel?.results?[current].name}',
-                                    style: TextStyle(color: Colors.blueGrey[200],fontSize: 14.sp,fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: cubit.dark? Colors.white:Colors.black,fontSize: 14.sp,fontWeight: FontWeight.bold),
                                     maxLines: 2,overflow: TextOverflow.ellipsis),
                                 ),
 

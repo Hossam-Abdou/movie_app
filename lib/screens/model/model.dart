@@ -1,4 +1,4 @@
-class Modell {
+class GenreModel {
   bool? adult;
   String? backdropPath;
   BelongsToCollection? belongsToCollection;
@@ -25,7 +25,7 @@ class Modell {
   double? voteAverage;
   int? voteCount;
 
-  Modell(
+  GenreModel(
       {this.adult,
         this.backdropPath,
         this.belongsToCollection,
@@ -52,7 +52,7 @@ class Modell {
         this.voteAverage,
         this.voteCount});
 
-  Modell.fromJson(Map<String, dynamic> json) {
+  GenreModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     belongsToCollection = json['belongs_to_collection'] != null

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:socer_project/screens/view_model/system_cubit.dart';
+import 'package:socer_project/screens/view_model/movie_cubit/system_cubit.dart';
 
 import '../../../../utils/end_points/urls.dart';
+import '../../../view_model/movie_cubit/system_state.dart';
 
 class ReviewsScreen extends StatelessWidget {
 
@@ -12,7 +13,8 @@ class ReviewsScreen extends StatelessWidget {
     return BlocBuilder<SystemCubit, SystemState>(
   builder: (context, state) {
     var cubit= SystemCubit.get(context);
-    return Expanded(
+    return SizedBox(
+      height: 250.h,
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
         separatorBuilder: (context, index) =>Divider(color: Colors.white,),
@@ -32,13 +34,13 @@ class ReviewsScreen extends StatelessWidget {
                     NetworkImage('https://img.freepik.com/premium-vector/3d-icon-user-profile-convex-volume-shape-person-circle_348818-1116.jpg'),
                   ),
                   SizedBox(width: 10.w,),
-                  Text('${cubit.reviewModel?.results?[index].authorDetails?.username}',style: TextStyle(color: Colors.white),),
+                  Text('${cubit.reviewModel?.results?[index].authorDetails?.username}',style: TextStyle(color: cubit.dark? Colors.white:Colors.black),),
                   SizedBox(width: 10.w,),
 
                   Row(
                     children: [
-                      Text('${cubit.reviewModel?.results?[index].authorDetails?.rating??'No rates'}',style: TextStyle(color: Colors.white),),
-                      Icon(Icons.star_border_outlined,color: Colors.white,)
+                      Text('${cubit.reviewModel?.results?[index].authorDetails?.rating??'No rates'}',style: TextStyle(color: cubit.dark? Colors.white:Colors.black),),
+                      Icon(Icons.star_border_outlined,color: cubit.dark? Colors.white:Colors.black)
                     ],
                   ),
 
@@ -48,7 +50,7 @@ class ReviewsScreen extends StatelessWidget {
               SizedBox(height: 15.h,),
               SizedBox(
                 width: 270.w,
-                child: Text('${cubit.reviewModel?.results?[index].content}',style: TextStyle(color: Colors.white),),)
+                child: Text('${cubit.reviewModel?.results?[index].content}',style: TextStyle(color: cubit.dark? Colors.white:Colors.black),),)
             ],
           ),
         ),

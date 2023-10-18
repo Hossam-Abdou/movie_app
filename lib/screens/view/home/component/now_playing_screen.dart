@@ -3,25 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:socer_project/screens/view/details/details_screen.dart';
 import 'package:socer_project/utils/widget/navigate.dart';
-import '../../../utils/end_points/urls.dart';
-import '../../view_model/system_cubit.dart';
+import '../../../../utils/end_points/urls.dart';
+import '../../../view_model/movie_cubit/system_cubit.dart';
+import '../../../view_model/movie_cubit/system_state.dart';
 
 class NowPlayingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SystemCubit, SystemState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit=SystemCubit.get(context);
         return GridView.builder(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: cubit.nowPlayingModel?.results?.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               childAspectRatio: 0.62,
@@ -30,13 +29,10 @@ class NowPlayingScreen extends StatelessWidget {
               InkWell(
                 onTap: ()
                 {
-
-
-
                   cubit.GetReview(cubit
                       .nowPlayingModel!.results![current]
                       .id as int);
-                  cubit.getd(cubit
+                  cubit.getGenre(cubit
                       .nowPlayingModel!.results![current]
                       .id as int);
                   cubit.GetCast(cubit
@@ -50,17 +46,16 @@ class NowPlayingScreen extends StatelessWidget {
                       id:cubit.nowPlayingModel?.results![current] ,
 
                   ),);
-                  print(cubit.nowPlayingModel?.results![current].id);
-                  
+
                 },
                 child: Column(
                   children: [
                     SizedBox(
-                      width: 180.w, height: 210.h,
+                      width: 180.w, height: 208.h,
                       child: Image.network('${EndPoints.linkImage}/${cubit.nowPlayingModel?.results?[current].posterPath}'),),
                     SizedBox(height: 10.h,),
                     Text('${cubit.nowPlayingModel?.results?[current].title}',
-                      style: TextStyle(color: Colors.white),),
+                      style: TextStyle(color:  cubit.dark? Colors.white:Colors.black),),
                   ],
                 ),
               ),

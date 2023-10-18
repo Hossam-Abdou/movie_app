@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:socer_project/screens/view_model/system_cubit.dart';
+import 'package:socer_project/screens/view_model/movie_cubit/system_cubit.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../../utils/end_points/urls.dart';
+import '../../../view_model/movie_cubit/system_state.dart';
 
 class CastScreen extends StatelessWidget {
   const CastScreen({Key? key}) : super(key: key);
@@ -16,8 +18,9 @@ class CastScreen extends StatelessWidget {
   },
   builder: (context, state) {
     var cubit =SystemCubit.get(context);
-    return Expanded(
-        child: GridView.builder(
+    return SizedBox(
+      height: 260.h,
+      child: GridView.builder(
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -40,14 +43,14 @@ class CastScreen extends StatelessWidget {
 
                     ),
                     Text('${cubit.castModel?.cast?[current].originalName}',
-                      style:  TextStyle(fontWeight: FontWeight.w900,fontSize: 14.sp,color: Colors.white),),
+                      style:  TextStyle(fontWeight: FontWeight.w900,fontSize: 14.sp,color:  cubit.dark? Colors.white:Colors.black),),
                     Divider(),
                     SizedBox(height: 10.h,),
-                    Text('C h a r a c t e r  N a m e',
+                    Text(S.of(context).charName,
                       style: TextStyle(fontWeight: FontWeight.normal,fontSize: 12.sp,color: Colors.blueGrey),),
                     SizedBox(height: 5.h,),
                     Text('${cubit.castModel?.cast?[current].character}',
-                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+                      style: TextStyle(fontWeight: FontWeight.bold,color:  cubit.dark? Colors.white:Colors.black),),
 
                   ],
                 ),

@@ -11,6 +11,7 @@ class EndPoints{
  static const trend='trending/movie/day';
  static const genre='genre/movie/list';
  static const video='movie';
+ static const search= 'search/movie';
 
  static const linkImage="https://image.tmdb.org/t/p/w500";
 }

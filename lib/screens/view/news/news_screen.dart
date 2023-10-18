@@ -19,15 +19,16 @@ class NewsScreen extends StatelessWidget {
             body: Padding(
           padding: EdgeInsets.all(8.0.r),
           child: ListView.separated(
+            physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return newswidget(
-                article1: Cubit.newsmod?.articles?[index],
+                article1: Cubit.newsModel?.articles?[index],
               );
             },
             separatorBuilder: (context, index) => SizedBox(
-              height: 10,
+              height: 10.h,
             ),
-            itemCount: Cubit.newsmod?.articles?.length ?? 0,
+            itemCount: Cubit.newsModel?.articles?.length ?? 0,
           ),
         ));
       },

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:socer_project/screens/view_model/system_cubit.dart';
-import '../../../utils/end_points/urls.dart';
-import '../../../utils/widget/navigate.dart';
-import '../details/details_screen.dart';
+import 'package:socer_project/screens/view_model/movie_cubit/system_cubit.dart';
+
+import '../../../../utils/end_points/urls.dart';
+import '../../../../utils/widget/navigate.dart';
+import '../../../view_model/movie_cubit/system_state.dart';
+import '../../details/details_screen.dart';
+
 
 class TopRatedScreen extends StatelessWidget {
 
@@ -17,11 +20,11 @@ class TopRatedScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit=SystemCubit.get(context);
         return GridView.builder(
-          physics: BouncingScrollPhysics(),
+          physics:const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: cubit.topRatedMovieModel?.results?.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               childAspectRatio: 0.62,
@@ -33,7 +36,7 @@ class TopRatedScreen extends StatelessWidget {
                   cubit.GetReview(cubit
                       .topRatedMovieModel!.results![current]
                       .id as int);
-                  cubit.getd(cubit
+                  cubit.getGenre(cubit
                       .topRatedMovieModel!.results![current]
                       .id as int);
                   cubit.GetCast(cubit
@@ -47,11 +50,11 @@ class TopRatedScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      width: 180.w, height: 210.h,
+                      width: 180.w, height: 208.h,
                       child: Image.network('${EndPoints.linkImage}/${cubit.topRatedMovieModel?.results?[current].posterPath}'),),
                     SizedBox(height: 10.h,),
                     Text('${cubit.topRatedMovieModel?.results?[current].title}',
-                      style: TextStyle(color: Colors.white),),
+                      style: TextStyle(color:  cubit.dark? Colors.white:Colors.black),),
                   ],
                 ),
               ),

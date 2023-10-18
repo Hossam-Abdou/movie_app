@@ -43,7 +43,7 @@ class newswidget extends StatelessWidget {
                         article1?.source?.name ?? 'سعد محمود',
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18.sp),
+                            fontWeight: FontWeight.bold, fontSize: 16.sp),
                       ),
                       Spacer(),
                       Text(
