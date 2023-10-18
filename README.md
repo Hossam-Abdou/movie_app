@@ -12,6 +12,6 @@
 
 **Technologies Used:**
 
-- Flutter
-- Dart
-- Dio (for HTTP requests)
+- Flutter   <a href="https://flutter.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="20" height="20"/> </a>
+
+- Dart   <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="20" height="20"/> </a>
